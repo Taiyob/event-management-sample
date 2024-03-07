@@ -3,11 +3,14 @@ import logo from "../../assets/logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import swal from "sweetalert";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const { logIn, logInWithGoogle } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+  const notify = () => toast.success("Wow so easy!");
   const handleGoogleLogIn = () => {
     logInWithGoogle()
       .then((result) => result.user)
@@ -21,8 +24,8 @@ const Login = () => {
       .then((result) => {
         result.user;
         e.target.reset();
-        navigate(location?.state ? location.state : '/');
-        swal("Good job!", "You logged in!", "success");
+        navigate(location?.state ? location.state : "/");
+        //swal("Good job!", "You logged in!", "success");
       })
       .catch((error) => {
         error.code;
@@ -107,6 +110,7 @@ const Login = () => {
                   </a>
                 </div> */}
                 <button
+                  onClick={notify}
                   type="submit"
                   className="w-full text-black bg-orange-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
@@ -146,6 +150,7 @@ const Login = () => {
                   </Link>
                 </div>
               </form>
+              <ToastContainer />
             </div>
           </div>
         </div>

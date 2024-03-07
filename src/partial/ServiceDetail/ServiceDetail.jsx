@@ -1,4 +1,5 @@
 // import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import {
   FaGoogle,
   FaGithub,
@@ -6,21 +7,24 @@ import {
   FaTwitter,
   FaInstagram,
 } from "react-icons/fa";
+import { useLoaderData, useParams } from "react-router-dom";
 // import { useEffect, useState } from "react";
 
 const ServiceDetail = () => {
-  //   const servicedata = useContext
-  //   const { id } = useParams();
-  //   console.log(id);
-  //   console.log(data.serviceData); // Access serviceData here
-  //   const [service, setService] = useState({});
-  // useEffect(()=>{
-
-  // },[]);
+  const detailId = useParams();
+  console.log(detailId.id);
+  const information = useLoaderData();
+  console.log(information);
+  // if(detailId){
+    const info =  information.find(details => details.id == detailId.id);
+    console.log(info);
+  // }
   return (
     <div>
       <div className="grid md:grid-cols-4">
         <div className="col-span-3">
+          <h1 className="text-black text-6xl">{info.id}</h1>
+          {/* <h1 className="text-black text-6xl">{info.description}</h1> */}
           <figure className="max-w-lg">
             <img
               className="h-auto max-w-full rounded-lg"
@@ -28,11 +32,11 @@ const ServiceDetail = () => {
               // alt={description}
             />
             <figcaption className="mt-2 text-sm text-center text-gray-500 dark:text-gray-400">
-              {/* {title} */}
+              
             </figcaption>
           </figure>
           <p className="text-justify text-gray-500 dark:text-gray-400">
-            {/* {detail_Description} */}
+            
           </p>
         </div>
         <div>
